@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import MovieCard  from '../components/MovieCard'
 
@@ -42,6 +43,12 @@ return (
     <h1 className="text-4xl font-bold text-white">
       Movie Explorer 🎬
     </h1>
+    <Link
+  to="/favorites"
+  className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-full transition-colors"
+>
+  ❤️ My Favorites
+</Link>
     <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 {isLoading ? (
   <p className="text-white text-lg">Loading...</p>

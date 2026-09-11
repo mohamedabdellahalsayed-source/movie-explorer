@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import MovieDetails from './pages/MovieDetails'
+import FavoritesPage from './pages/FavoritesPage'
 
 function App(){
   const [favorites, setFavorites] = useState(() => {
@@ -25,6 +26,7 @@ function toggleFavorite(movie) {
     <Routes>
       <Route path="/" element={<HomePage favorites={favorites} toggleFavorite={toggleFavorite} />} />
       <Route path="/movie/:id" element={<MovieDetails favorites={favorites} toggleFavorite={toggleFavorite} />} />
+      <Route path="/favorites" element={<FavoritesPage favorites={favorites} toggleFavorite={toggleFavorite} />} />
     </Routes>
   )
 }

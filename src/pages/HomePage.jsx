@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import SearchBar from '../components/SearchBar'
 import MovieCard  from '../components/MovieCard'
 
-function HomePage() {
+function HomePage({ favorites, toggleFavorite }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -48,7 +48,12 @@ return (
 ) : (
   <div className="flex flex-wrap gap-4 justify-center max-w-6xl">
     {movies.map(movie => (
-      <MovieCard key={movie.id} movie={movie} />
+      <MovieCard
+  key={movie.id}
+  movie={movie}
+  isFavorite={favorites.some(fav => fav.id === movie.id)}
+  toggleFavorite={toggleFavorite}
+/>
     ))}
   </div>
 )}

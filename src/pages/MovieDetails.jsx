@@ -2,9 +2,10 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-function MovieDetails() {
+function MovieDetails({ favorites, toggleFavorite }) {
 const { id } = useParams()
 const [movie, setMovie] = useState(null)
+const isFavorite = movie && favorites.some(fav => fav.id === movie.id)
 
 useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`)
@@ -32,6 +33,12 @@ return (
 >
   ← Back to Home
 </Link>
+<button
+  onClick={() => toggleFavorite(movie)}
+  className="text-3xl"
+>
+  {isFavorite ? '❤️' : '🤍'}
+</button>
     <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
